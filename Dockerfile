@@ -1,11 +1,11 @@
 FROM golang:1.20-alpine
 
-WORKDIR /se-project-app
+WORKDIR /ses-project-app
 
 COPY . .
 
-RUN go build -o se-project-app
+RUN go build -o ses-project-app
 
 EXPOSE 8888
 
-CMD ["./se-project-app"]
+CMD ["./ses-project-app"]
