@@ -15,6 +15,7 @@ func sendEmail(emails []string, message string) error {
 	senderEmail := os.Getenv("EMAIL")
 	senderPassword := os.Getenv("EMAIL_PASSWORD")
 
+	// create a new "message" with headers
 	mail := gomail.NewMessage()
 	mail.SetHeader("From", senderEmail)
 	mail.SetHeader("To", emails...)
@@ -33,6 +34,6 @@ func sendEmail(emails []string, message string) error {
 func SendEmailWithRate() error {
 	time, rate, _ := currency_rate_getter.GetRateBtcToUah()
 	emails := GetAllEmails()
-	message := fmt.Sprintf("On %v, 1 BTC costs %f UAH\n", time, rate)
+	message := fmt.Sprintf("At %s, 1 BTC costs %f UAH\n", time, rate)
 	return sendEmail(emails, message)
 }

@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+// structure for response decoding
 type Response struct {
 	Time string  `json:"time"`
 	Rate float64 `json:"rate"`
