@@ -19,5 +19,6 @@
 
 # Go workspace file
 go.work
-.idea
-.env
+
+.idea/
+emails/emails.txt
