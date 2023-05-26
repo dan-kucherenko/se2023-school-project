@@ -3,11 +3,8 @@ package currency_rate_getter
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
-
-	"github.com/joho/godotenv"
 )
 
 type Response struct {
@@ -17,11 +14,6 @@ type Response struct {
 
 func GetRateBtcToUah() (string, float64, error) {
 	client := http.Client{}
-	// load the .env file
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file:", err)
-	}
 	apiKey := os.Getenv("API_KEY")
 	url := "https://rest.coinapi.io/v1/exchangerate/BTC/UAH"
 
