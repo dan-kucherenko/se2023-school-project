@@ -9,13 +9,13 @@ import (
 	"os"
 )
 
-// main routing function to start the server and activate the endpoints handlers
+// main routing function to start the server and activate the endpoint handlers
 func ActivateRouter() {
 	router := http.NewServeMux()
 
-	router.HandleFunc("/api/rate", rate)
-	router.HandleFunc("/api/subscribe", subscribe)
-	router.HandleFunc("/api/sendEmails", sendEmails)
+	router.HandleFunc("/rate", rate)
+	router.HandleFunc("/subscribe", subscribe)
+	router.HandleFunc("/sendEmails", sendEmails)
 
 	port := os.Getenv("PORT")
 	err := http.ListenAndServe(":"+port, router)
@@ -40,7 +40,7 @@ func subscribe(rw http.ResponseWriter, r *http.Request) {
 	candidateEmail := r.FormValue("email")
 	if emails.IsEmailSubscribed(candidateEmail) {
 		rw.WriteHeader(409)
-		_, _ = fmt.Fprintf(rw, "Email %s is already subscribed", candidateEmail)
+		_, _ = fmt.Fprintf(rw, "Error! Email %s is already subscribed", candidateEmail)
 	} else {
 		err := emails.SubscribeNewEmail(candidateEmail)
 		if err != nil {

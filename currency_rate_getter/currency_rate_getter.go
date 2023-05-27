@@ -8,11 +8,12 @@ import (
 )
 
 // structure for response decoding
-type Response struct {
+type JSONResponse struct {
 	Time string  `json:"time"`
 	Rate float64 `json:"rate"`
 }
 
+// function to get the rate
 func GetRateBtcToUah() (string, float64, error) {
 	client := http.Client{}
 	apiKey := os.Getenv("API_KEY")
@@ -35,7 +36,7 @@ func GetRateBtcToUah() (string, float64, error) {
 	defer resp.Body.Close()
 
 	// read the response body
-	var result Response
+	var result JSONResponse
 	err = json.NewDecoder(resp.Body).Decode(&result)
 	if err != nil {
 		fmt.Println("Error decoding response:", err)

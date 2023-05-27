@@ -8,6 +8,7 @@ import (
 	"os"
 )
 
+// additional function for sending the emails
 func sendEmail(emails []string, message string) error {
 	if len(emails) == 0 {
 		return nil
@@ -23,6 +24,7 @@ func sendEmail(emails []string, message string) error {
 	mail.SetBody("text/html", message)
 
 	dialer := gomail.NewDialer("smtp.gmail.com", 587, senderEmail, senderPassword)
+	// configuration for accepting any certificate presented by the server
 	dialer.TLSConfig = &tls.Config{InsecureSkipVerify: true}
 	// send the email
 	if err := dialer.DialAndSend(mail); err != nil {

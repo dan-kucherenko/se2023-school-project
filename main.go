@@ -7,14 +7,10 @@ import (
 )
 
 func main() {
-	loadEnvFile()
-	router.ActivateRouter()
-}
-
-// load .env file for future function calls
-func loadEnvFile() {
+	// load .env file for the future
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatalf("Error loading .env file")
 	}
+	router.ActivateRouter()
 }
